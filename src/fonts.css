@@ -1,0 +1,104 @@
+@font-face {
+  font-family: BkCd;
+  src: url("./assets/fonts/ITCFranklinGothicStd-BkCd.otf");
+}
+
+@font-face {
+  font-family: DmCd;
+  src: url("./assets/fonts/ITCFranklinGothicStd-DmCd.otf");
+}
+
+@font-face {
+  font-family: DmCp;
+  src: url("./assets/fonts/ITCFranklinGothicStd-DmCp.otf");
+}
+
+/* _____________________________________ */
+
+@font-face {
+  font-family: BkCp;
+  src: url("./assets/fonts/ITCFranklinGothicStd-BkCp.otf");
+}
+
+@font-face {
+  font-family: BkXCp;
+  src: url("./assets/fonts/ITCFranklinGothicStd-BkXCp.otf");
+}
+
+@font-face {
+  font-family: Book;
+  src: url("./assets/fonts/ITCFranklinGothicStd-Book.otf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Demi;
+  src: url("./assets/fonts/ITCFranklinGothicStd-Demi.otf");
+}
+
+@font-face {
+  font-family: DmXCp;
+  src: url("./assets/fonts/ITCFranklinGothicStd-DmXCp.otf");
+}
+
+@font-face {
+  font-family: Hvy;
+  src: url("./assets/fonts/ITCFranklinGothicStd-Hvy.otf");
+}
+
+@font-face {
+  font-family: MdCd;
+  src: url("./assets/fonts/ITCFranklinGothicStd-MdCd.otf");
+}
+
+@font-face {
+  font-family: Med;
+  src: url("./assets/fonts/ITCFranklinGothicStd-Med.otf");
+}
+
+/* ___________- */
+
+@font-face {
+  font-family: MedIt;
+  src: url("./assets/fonts/ITCFranklinGothicStd-MedIt.otf");
+}
+
+@font-face {
+  font-family: DemiIt;
+  src: url("./assets/fonts/ITCFranklinGothicStd-DemiIt.otf");
+}
+
+@font-face {
+  font-family: DmCdIt;
+  src: url("./assets/fonts/ITCFranklinGothicStd-DmCdIt.otf");
+}
+
+@font-face {
+  font-family: DmCpIt;
+  src: url("./assets/fonts/ITCFranklinGothicStd-DmCpIt.otf");
+}
+
+@font-face {
+  font-family: BookIt;
+  src: url("./assets/fonts/ITCFranklinGothicStd-BookIt.otf");
+}
+
+/* @font-face {
+  font-family: BkCplt;
+  src: url("./assets/fonts/ITCFranklinGothicStd-BkCplt.otf");
+} */
+
+@font-face {
+  font-family: BkCdlt;
+  src: url("./assets/fonts/ITCFranklinGothicStd-BkCdlt.otf");
+}
+
+@font-face {
+  font-family: HvyIt;
+  src: url("./assets/fonts/ITCFranklinGothicStd-HvyIt.otf");
+}
+
+@font-face {
+  font-family: MdCdIt;
+  src: url("./assets/fonts/ITCFranklinGothicStd-MdCdIt.otf");
+}
