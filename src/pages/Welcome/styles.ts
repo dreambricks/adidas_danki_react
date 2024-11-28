@@ -3,30 +3,32 @@ import styled from "styled-components";
 export const Container = styled.div`
   background: white;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  padding-bottom: 315px;
   height: 100%;
   padding-left: 130px;
+  padding-top: 297px;
 
   color: black;
 
   .welcome {
     font-family: DmCp, "sans-serif";
     font-size: 206px;
+    line-height: 80%;
   }
 
   .dive-in {
     display: flex;
     align-items: center;
     gap: 32px;
-    margin-top: 156px;
+    margin-top: 149px;
 
     p {
       font-family: DmCp, "sans-serif";
       font-size: 73px;
       width: 490px;
       letter-spacing: 14px;
+      line-height: 120%;
     }
   }
 
@@ -52,7 +54,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 252px;
+    margin-top: 206px;
     position: relative;
     clip-path: polygon(100% 0, 100% 60%, 91% 100%, 1% 100%, 0 0);
     letter-spacing: 13px;

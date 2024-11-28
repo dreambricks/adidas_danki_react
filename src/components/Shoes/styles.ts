@@ -1,15 +1,48 @@
 import styled from "styled-components";
 import { Link } from "react-router";
 
-export const Container = styled(Link)`
+interface StyleProps {
+  big: boolean;
+}
+
+export const Container = styled(Link)<StyleProps>`
   width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
 
+  .shoe-container {
+    position: relative;
+    margin-top: 1px;
+    background: black;
+    padding: 1px;
+    clip-path: polygon(
+      0 0,
+      100% 1%,
+      100% 0%,
+      100% 54%,
+      87% 100%,
+      0% 100%,
+      0% 82%,
+      0% 29%
+    );
+  }
+
   .shoes-name {
     position: relative;
-    overflow: hidden;
+    background: white;
+    padding: ${({ big }) => (big ? " 20px 20px" : "0")};
+
+    clip-path: polygon(
+      0 0,
+      100% 1%,
+      100% 0%,
+      100% 54%,
+      87% 100%,
+      0% 100%,
+      0% 82%,
+      0% 29%
+    );
 
     p {
       font-family: DmCd, "sans-serif";
@@ -18,22 +51,7 @@ export const Container = styled(Link)`
       font-size: 40px;
       color: black;
       text-transform: uppercase;
-      border: 1px solid black;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: white;
-      border-left: 1px solid black;
-      border-top: 1px white;
-      border-bottom: 1px solid white;
-      transform: rotate(45deg);
-      right: -10px;
-      bottom: -10px;
-      z-index: 2;
+      outline: none;
     }
   }
 `;

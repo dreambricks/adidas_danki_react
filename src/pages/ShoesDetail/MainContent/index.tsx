@@ -17,9 +17,10 @@ const settings = {
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-  autoplay: true,
+  autoplay: false,
   speed: 500,
   cssEase: "linear",
+  centerPadding: "60px",
 };
 
 interface MainContentProps {
@@ -48,10 +49,10 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
         <div className="shoes-slide">
           <Slider {...settings}>
             <div>
-              <Shoes img={Tenis2} shoesName="Teste" id={2} />
+              <Shoes img={Tenis2} shoesName="Teste" id={2} big />
             </div>
             <div>
-              <Shoes img={Tenis2} shoesName="Teste" id={4} />
+              <Shoes img={Tenis2} shoesName="Teste" id={4} big />
             </div>
           </Slider>
         </div>

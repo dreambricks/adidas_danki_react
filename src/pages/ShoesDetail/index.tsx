@@ -14,8 +14,12 @@ export const ShoesDetail = () => {
 
   return (
     <Container>
-      <TransitionGroup>
-        <CSSTransition timeout={{ enter: 500, exit: 500 }} key={activeSlide}>
+      <TransitionGroup className="slide-group">
+        <CSSTransition
+          timeout={{ enter: 500, exit: 500 }}
+          key={activeSlide}
+          classNames="slide"
+        >
           {activeSlide === 1 ? (
             <div>
               <MainContent onSwipe={onSwipeNextSlide} />

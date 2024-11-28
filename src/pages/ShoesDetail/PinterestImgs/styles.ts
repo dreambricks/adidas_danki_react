@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
+  max-width: 1010px;
+  margin: 0 auto;
   height: 100%;
   background: white;
   display: flex;
@@ -11,7 +13,6 @@ export const Container = styled.div`
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    padding: 0 40px;
     width: 100%;
     box-sizing: border-box;
 
@@ -20,24 +21,25 @@ export const Container = styled.div`
       color: white;
       display: flex;
       justify-content: flex-start;
-      padding: 20px;
-      width: 710px;
+      width: 100%;
+      max-width: 710px;
+
       text-transform: uppercase;
-      gap: 32px;
       margin-top: 115px;
       position: relative;
       align-items: center;
       clip-path: polygon(93% 0%, 100% 32%, 100% 100%, 1% 100%, 1% 1%);
-      max-width: 710px;
       padding: 31px 42px;
+      box-sizing: border-box;
 
       img {
         width: 53px;
+        margin-right: 32px;
       }
 
       p {
         font-size: 41px;
-        letter-spacing: 5px;
+        letter-spacing: 4px;
         font-family: BkCd, "sans-serif";
         padding-top: 20px;
         span {
@@ -52,16 +54,17 @@ export const Container = styled.div`
   }
 
   .pinterest-imgs {
-    padding: 0 40px;
     margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto;
-    gap: 36px;
+    gap: 23px;
 
     .pinterest-img {
+      border-radius: 30px;
       img {
         width: 100%;
+        width: 487px;
       }
     }
   }

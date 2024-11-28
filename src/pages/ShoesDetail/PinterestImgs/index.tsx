@@ -4,12 +4,17 @@ import Pinterest from "../../../assets/imgs/icons/pinterest.png";
 import Pinterest1 from "../../../assets/imgs/pinterest/pinterest_1.png";
 import Pinterest2 from "../../../assets/imgs/pinterest/pinterest_4.png";
 import GoBack from "../../../assets/imgs/icons/go-back.png";
+import { useEffect } from "react";
 
 interface PinterestImgsProps {
   prevSlide: () => void;
 }
 
 export const PinterestImgs = ({ prevSlide }: PinterestImgsProps) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <Container>
       <div className="header-slide">
