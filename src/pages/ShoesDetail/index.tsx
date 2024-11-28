@@ -3,8 +3,10 @@ import { MainContent } from "./MainContent";
 import { PinterestImgs } from "./PinterestImgs";
 import { Container } from "./styles";
 
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 export const ShoesDetail = () => {
-  const [activeSlide, setActiveSlide] = useState(2);
+  const [activeSlide, setActiveSlide] = useState(1);
 
   const onSwipeNextSlide = () => setActiveSlide(2);
 
@@ -12,15 +14,19 @@ export const ShoesDetail = () => {
 
   return (
     <Container>
-      {activeSlide === 1 ? (
-        <div className="mySlides active fade">
-          <MainContent onSwipe={onSwipeNextSlide} />
-        </div>
-      ) : (
-        <div className="mySlides active fade">
-          <PinterestImgs prevSlide={onSwipePrevSlide} />
-        </div>
-      )}
+      <TransitionGroup>
+        <CSSTransition timeout={{ enter: 500, exit: 500 }} key={activeSlide}>
+          {activeSlide === 1 ? (
+            <div>
+              <MainContent onSwipe={onSwipeNextSlide} />
+            </div>
+          ) : (
+            <div>
+              <PinterestImgs prevSlide={onSwipePrevSlide} />
+            </div>
+          )}
+        </CSSTransition>
+      </TransitionGroup>
     </Container>
   );
 };

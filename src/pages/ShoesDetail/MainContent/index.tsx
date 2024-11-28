@@ -10,6 +10,7 @@ import GoBack from "../../../assets/imgs/icons/go-back.png";
 import { Container } from "./styles";
 import { Shoes } from "../../../components/Shoes";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const settings = {
   dots: false,
@@ -26,14 +27,16 @@ interface MainContentProps {
 }
 
 export const MainContent = ({ onSwipe }: MainContentProps) => {
-  const goBackToList = () => {};
+  const navigate = useNavigate();
+
+  const goBackToList = () => navigate("/listar-tenis");
 
   const swipe = () => {
     onSwipe();
   };
 
   useEffect(() => {
-    document.querySelector(".swipe")?.addEventListener("touchmove", swipe);
+    document.querySelector(".swipe")?.addEventListener("click", swipe);
 
     return () =>
       document.querySelector(".swipe")?.removeEventListener("touchmove", swipe);
