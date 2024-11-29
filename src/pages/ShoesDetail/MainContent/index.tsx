@@ -9,15 +9,17 @@ import GoBack from "../../../assets/imgs/icons/go-back.png";
 
 import { Container } from "./styles";
 import { Shoes } from "../../../components/Shoes";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { fetchShoesDetails } from "../../../services/apis";
+import { Loader } from "../../../components/Loader";
 
 const settings = {
   dots: false,
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-  autoplay: false,
+  autoplay: true,
   speed: 500,
   cssEase: "linear",
   centerPadding: "60px",
@@ -27,8 +29,24 @@ interface MainContentProps {
   onSwipe: () => void;
 }
 
+interface ShoesList {
+  code: string;
+  images: string[];
+  model: string;
+  description: string;
+  title: string;
+}
+
 export const MainContent = ({ onSwipe }: MainContentProps) => {
+  const [shoesList, setShoesList] = useState<null | ShoesList>(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { id: idParam } = useParams<{ id: string }>();
+
+  const splittedShoesName = shoesList?.model.split(" ");
+
+  const shoesName = splittedShoesName?.shift();
+  const variation = splittedShoesName?.join().replaceAll(",", " ") || "";
 
   const goBackToList = () => navigate("/listar-tenis");
 
@@ -36,134 +54,150 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
     onSwipe();
   };
 
+  const getShoesDetails = async (idParam: string) => {
+    try {
+      setLoading(true);
+      const response = await fetchShoesDetails(idParam);
+      setShoesList(response);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
+    if (idParam) getShoesDetails(idParam);
     document.querySelector(".swipe")?.addEventListener("click", swipe);
 
     return () =>
-      document.querySelector(".swipe")?.removeEventListener("touchmove", swipe);
+      document.querySelector(".swipe")?.removeEventListener("click", swipe);
   }, []);
 
   return (
     <div className="main">
       <Container>
-        <div className="shoes-slide">
-          <Slider {...settings}>
-            <div>
-              <Shoes img={Tenis2} shoesName="Teste" id={2} big />
+        {loading && <Loader />}
+
+        {!loading && shoesList?.code && (
+          <>
+            <div className="shoes-slide">
+              <Slider {...settings}>
+                {shoesList.images.map((image, index) => (
+                  <div>
+                    <Shoes
+                      img={image}
+                      shoesName={shoesName || shoesList.model}
+                      variation={variation}
+                      big
+                      key={index}
+                    />
+                  </div>
+                ))}
+              </Slider>
             </div>
-            <div>
-              <Shoes img={Tenis2} shoesName="Teste" id={4} big />
+
+            <div className="info">
+              <img src={AdidasBlack} alt="" />
+
+              <p>
+                <p>{shoesList.title}</p>
+              </p>
             </div>
-          </Slider>
-        </div>
 
-        <div className="info">
-          <img src={AdidasBlack} alt="" />
+            <div className="describe">
+              <p>{shoesList.description}</p>
+            </div>
 
-          <p>
-            <span>ELEGÂNCIA</span> COM <span>TOQUES </span>
-            <span>MODERNOS DE COR</span>
-          </p>
-        </div>
+            <div className="other-colors">
+              <p>outras cores:</p>
 
-        <div className="describe">
-          <p>
-            O tênis adidas Samba OG é ideal para caminhadas ou passeios, sempre
-            mantendo seu <span>look alinhado</span>. Com{" "}
-            <span>design moderno</span> inspirado nos anos 50, apresenta cabedal
-            de suede e couro, além de um solado de borracha aderente. As{" "}
-            <span>Três Listras</span> destacam seu amor pela marca em cada
-            passo!
-          </p>
-        </div>
-
-        <div className="other-colors">
-          <p>outras cores:</p>
-
-          <div className="shoes">
-            <img src={Tenis2} alt="" />
-            <img src={Tenis2} alt="" />
-            <img src={Tenis2} alt="" />
-          </div>
-        </div>
-
-        <div className="swipe">
-          <img src={Pinterest} alt="" />
-
-          <div>
-            <p>arraste a tela para a esquerda</p>
-            <p>E CONFIRA MAIS INSPIRAÇÕES DE LOOKS COM O SAMBA OG W</p>
-          </div>
-        </div>
-
-        <div className="pinterest">
-          <div className="pinterest-img">
-            <img src={Pinterest1} alt="" />
-          </div>
-
-          <div className="pinterest-img">
-            <img src={Pinterest2} alt="" />
-          </div>
-
-          <div className="pinterest-img">
-            <img src={Pinterest1} alt="" />
-          </div>
-
-          <div className="pinterest-img">
-            <img src={Pinterest2} alt="" />
-          </div>
-
-          <div className="pinterest-img">
-            <img src={Pinterest1} alt="" />
-          </div>
-
-          <div className="pinterest-img">
-            <img src={Pinterest2} alt="" />
-          </div>
-
-          <div className="pinterest-img">
-            <img src={Pinterest1} alt="" />
-          </div>
-
-          <div className="pinterest-img">
-            <img src={Pinterest2} alt="" />
-          </div>
-
-          <div className="pinterest-img">
-            <img src={Pinterest1} alt="" />
-          </div>
-
-          <div className="pinterest-img">
-            <img src={Pinterest2} alt="" />
-          </div>
-        </div>
-
-        <div className="separator"></div>
-
-        <div className="other-shoes">
-          <h5>OUTROS MODELOS QUE VOCÊ TALVEZ GOSTE:</h5>
-          <div className="options-container">
-            <div className="wrapper-items">
               <div className="shoes">
                 <img src={Tenis2} alt="" />
-                <p>SAMBA</p>
-              </div>
-              <div className="shoes">
                 <img src={Tenis2} alt="" />
-                <p>SAMBA</p>
-              </div>
-              <div className="shoes">
                 <img src={Tenis2} alt="" />
-                <p>SAMBA</p>
               </div>
             </div>
-          </div>
-        </div>
 
-        <button className="go-back" onClick={goBackToList}>
-          <img src={GoBack} alt="" />
-          VOLTAR PARA O CATÁLOGO
-        </button>
+            <div className="swipe">
+              <img src={Pinterest} alt="" />
+
+              <div>
+                <p>arraste a tela para a esquerda</p>
+                <p>E CONFIRA MAIS INSPIRAÇÕES DE LOOKS COM O SAMBA OG W</p>
+              </div>
+            </div>
+
+            <div className="pinterest">
+              <div className="pinterest-img">
+                <img src={Pinterest1} alt="" />
+              </div>
+
+              <div className="pinterest-img">
+                <img src={Pinterest2} alt="" />
+              </div>
+
+              <div className="pinterest-img">
+                <img src={Pinterest1} alt="" />
+              </div>
+
+              <div className="pinterest-img">
+                <img src={Pinterest2} alt="" />
+              </div>
+
+              <div className="pinterest-img">
+                <img src={Pinterest1} alt="" />
+              </div>
+
+              <div className="pinterest-img">
+                <img src={Pinterest2} alt="" />
+              </div>
+
+              <div className="pinterest-img">
+                <img src={Pinterest1} alt="" />
+              </div>
+
+              <div className="pinterest-img">
+                <img src={Pinterest2} alt="" />
+              </div>
+
+              <div className="pinterest-img">
+                <img src={Pinterest1} alt="" />
+              </div>
+
+              <div className="pinterest-img">
+                <img src={Pinterest2} alt="" />
+              </div>
+            </div>
+
+            <div className="separator"></div>
+
+            <div className="other-shoes">
+              <h5>OUTROS MODELOS QUE VOCÊ TALVEZ GOSTE:</h5>
+              <div className="options-container">
+                <div className="wrapper-items">
+                  <div className="shoes">
+                    <img src={Tenis2} alt="" />
+                    <p>SAMBA</p>
+                  </div>
+                  <div className="shoes">
+                    <img src={Tenis2} alt="" />
+                    <p>SAMBA</p>
+                  </div>
+                  <div className="shoes">
+                    <img src={Tenis2} alt="" />
+                    <p>SAMBA</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button className="go-back" onClick={goBackToList}>
+              <img src={GoBack} alt="" />
+              VOLTAR PARA O CATÁLOGO
+            </button>
+          </>
+        )}
       </Container>
     </div>
   );

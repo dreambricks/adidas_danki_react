@@ -12,15 +12,18 @@ export const Container = styled.div`
 
   .shoes-slide {
     width: 958px;
-    height: 710px;
+    height: 866px;
+
+    img {
+      width: 100%;
+      display: block;
+      max-width: 957px;
+      height: 709px;
+      object-fit: cover;
+    }
 
     .shoes {
       overflow: hidden;
-
-      img {
-        width: 100%;
-        display: block;
-      }
 
       p {
         border: 1px solid black;
@@ -58,13 +61,9 @@ export const Container = styled.div`
 
     p {
       font-size: 52px;
-      font-family: BkCd, "sans-serif";
+      font-family: DmCd, "sans-serif";
       letter-spacing: 5px;
       padding-top: 20px;
-
-      span {
-        font-family: DmCd, "sans-serif";
-      }
     }
   }
 

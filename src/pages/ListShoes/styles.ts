@@ -20,5 +20,12 @@ export const Container = styled.div`
     grid-template-rows: auto;
 
     gap: 36px;
+
+    img {
+      width: 100%;
+      max-width: 473px;
+      height: 473px;
+      object-fit: contain;
+    }
   }
 `;
