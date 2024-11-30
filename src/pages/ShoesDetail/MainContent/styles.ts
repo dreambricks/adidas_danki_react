@@ -103,7 +103,9 @@ export const Container = styled.div`
 
       img {
         width: 100%;
-        max-width: 336px;
+        max-width: 316px;
+        height: 316px;
+        object-fit: cover;
       }
     }
   }
@@ -144,6 +146,15 @@ export const Container = styled.div`
     grid-template-rows: auto auto;
     gap: 17px;
     margin-top: 56px;
+    padding: 0 15px;
+
+    img {
+      width: 100%;
+      max-width: 275px;
+      height: 366px;
+      object-fit: cover;
+      border-radius: 30px;
+    }
   }
 
   .separator {
@@ -181,6 +192,12 @@ export const Container = styled.div`
         margin: 0 auto;
         gap: 48px;
         color: white;
+
+        a {
+          text-decoration: none;
+          color: white;
+        }
+
         .shoes {
           margin-top: -40px;
           p {
@@ -191,6 +208,8 @@ export const Container = styled.div`
           img {
             width: 100%;
             max-width: 240px;
+            height: 130px;
+            object-fit: cover;
           }
         }
       }

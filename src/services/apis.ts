@@ -7,7 +7,7 @@ export const fetchShoes = async () => {
 };
 
 export const fetchShoesDetails = async (code: string) => {
-  const response = await API.get(`/shoe-details?code=${code}`);
+  const response = await API.get(`/shoe-details?id=${code}`);
 
   return response.data;
 };

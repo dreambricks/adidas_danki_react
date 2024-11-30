@@ -1,10 +1,19 @@
 import { Container } from "./styles";
 import AdidasBlack from "../../assets/imgs/icons/adidas_black.png";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
+import { useCTA } from "../../hook/CTA";
 
 export const Welcome = () => {
   const navigate = useNavigate();
   const redirectListt = () => navigate("/listar-tenis");
+
+  const { bacToInit } = useCTA();
+
+  useEffect(() => {
+    bacToInit();
+  }, []);
+
   return (
     <Container>
       <h1 className="welcome">

@@ -6,7 +6,7 @@ export const useCTA = () => {
   const bacToInit = () => {
     setTimeout(() => {
       navigate("/");
-    }, 450000);
+    }, 45000);
   };
 
   return {

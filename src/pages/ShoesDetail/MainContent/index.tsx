@@ -10,9 +10,18 @@ import GoBack from "../../../assets/imgs/icons/go-back.png";
 import { Container } from "./styles";
 import { Shoes } from "../../../components/Shoes";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { fetchShoesDetails } from "../../../services/apis";
 import { Loader } from "../../../components/Loader";
+
+import PinterestImg1 from "../../../assets/imgs/pinterest/pinterest-1.png";
+import PinterestImg2 from "../../../assets/imgs/pinterest/pinterest-2.png";
+import PinterestImg3 from "../../../assets/imgs/pinterest/pinterest-3.png";
+import PinterestImg4 from "../../../assets/imgs/pinterest/pinterest-4.png";
+import PinterestImg5 from "../../../assets/imgs/pinterest/pinterest-5.png";
+import PinterestImg6 from "../../../assets/imgs/pinterest/pinterest-6.png";
+import PinterestImg7 from "../../../assets/imgs/pinterest/pinterest-7.png";
+import PinterestImg8 from "../../../assets/imgs/pinterest/pinterest-8.png";
 
 const settings = {
   dots: false,
@@ -29,12 +38,22 @@ interface MainContentProps {
   onSwipe: () => void;
 }
 
+interface Image {
+  code: string;
+  image: string;
+  model: string;
+  shoeId: string;
+}
+
 interface ShoesList {
   code: string;
   images: string[];
   model: string;
   description: string;
   title: string;
+  colors: Image[];
+  suggestion: Image[];
+  _id: string;
 }
 
 export const MainContent = ({ onSwipe }: MainContentProps) => {
@@ -43,15 +62,22 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
   const navigate = useNavigate();
   const { id: idParam } = useParams<{ id: string }>();
 
-  const splittedShoesName = shoesList?.model.split(" ");
-
-  const shoesName = splittedShoesName?.shift();
-  const variation = splittedShoesName?.join().replaceAll(",", " ") || "";
-
   const goBackToList = () => navigate("/listar-tenis");
 
   const swipe = () => {
     onSwipe();
+  };
+
+  const splitShoesName = (name: string) => {
+    const splittedShoesName = name.split(" ");
+
+    const shoesName = splittedShoesName?.shift();
+    const variation = splittedShoesName?.join().replaceAll(",", " ") || "";
+
+    return {
+      shoesName,
+      variation,
+    };
   };
 
   const getShoesDetails = async (idParam: string) => {
@@ -72,7 +98,7 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
 
     return () =>
       document.querySelector(".swipe")?.removeEventListener("click", swipe);
-  }, []);
+  }, [idParam]);
 
   return (
     <div className="main">
@@ -82,19 +108,39 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
         {!loading && shoesList?.code && (
           <>
             <div className="shoes-slide">
-              <Slider {...settings}>
-                {shoesList.images.map((image, index) => (
+              {shoesList.images.length > 1 ? (
+                <Slider {...settings}>
+                  {shoesList.images.map((image, index) => (
+                    <div>
+                      <Shoes
+                        img={image}
+                        shoesName={
+                          splitShoesName(shoesList.model).shoesName ||
+                          shoesList.model
+                        }
+                        variation={splitShoesName(shoesList.model).variation}
+                        big
+                        key={index}
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              ) : (
+                shoesList.images.map((image, index) => (
                   <div>
                     <Shoes
                       img={image}
-                      shoesName={shoesName || shoesList.model}
-                      variation={variation}
+                      shoesName={
+                        splitShoesName(shoesList.model).shoesName ||
+                        shoesList.model
+                      }
+                      variation={splitShoesName(shoesList.model).variation}
                       big
                       key={index}
                     />
                   </div>
-                ))}
-              </Slider>
+                ))
+              )}
             </div>
 
             <div className="info">
@@ -109,15 +155,17 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
               <p>{shoesList.description}</p>
             </div>
 
-            <div className="other-colors">
-              <p>outras cores:</p>
+            {shoesList.colors.length >= 1 && (
+              <div className="other-colors">
+                <p>outras cores:</p>
 
-              <div className="shoes">
-                <img src={Tenis2} alt="" />
-                <img src={Tenis2} alt="" />
-                <img src={Tenis2} alt="" />
+                <div className="shoes">
+                  {shoesList.colors.map((color) => (
+                    <Shoes img={color.image} code={color.shoeId} />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="swipe">
               <img src={Pinterest} alt="" />
@@ -130,43 +178,35 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
 
             <div className="pinterest">
               <div className="pinterest-img">
-                <img src={Pinterest1} alt="" />
+                <img src={PinterestImg1} alt="" />
               </div>
 
               <div className="pinterest-img">
-                <img src={Pinterest2} alt="" />
+                <img src={PinterestImg2} alt="" />
               </div>
 
               <div className="pinterest-img">
-                <img src={Pinterest1} alt="" />
+                <img src={PinterestImg3} alt="" />
               </div>
 
               <div className="pinterest-img">
-                <img src={Pinterest2} alt="" />
+                <img src={PinterestImg4} alt="" />
               </div>
 
               <div className="pinterest-img">
-                <img src={Pinterest1} alt="" />
+                <img src={PinterestImg5} alt="" />
               </div>
 
               <div className="pinterest-img">
-                <img src={Pinterest2} alt="" />
+                <img src={PinterestImg6} alt="" />
               </div>
 
               <div className="pinterest-img">
-                <img src={Pinterest1} alt="" />
+                <img src={PinterestImg7} alt="" />
               </div>
 
               <div className="pinterest-img">
-                <img src={Pinterest2} alt="" />
-              </div>
-
-              <div className="pinterest-img">
-                <img src={Pinterest1} alt="" />
-              </div>
-
-              <div className="pinterest-img">
-                <img src={Pinterest2} alt="" />
+                <img src={PinterestImg8} alt="" />
               </div>
             </div>
 
@@ -176,18 +216,17 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
               <h5>OUTROS MODELOS QUE VOCÊ TALVEZ GOSTE:</h5>
               <div className="options-container">
                 <div className="wrapper-items">
-                  <div className="shoes">
-                    <img src={Tenis2} alt="" />
-                    <p>SAMBA</p>
-                  </div>
-                  <div className="shoes">
-                    <img src={Tenis2} alt="" />
-                    <p>SAMBA</p>
-                  </div>
-                  <div className="shoes">
-                    <img src={Tenis2} alt="" />
-                    <p>SAMBA</p>
-                  </div>
+                  {shoesList.suggestion.map((suggestion) => (
+                    <Link to={`/listar-tenis/${suggestion.shoeId} `}>
+                      <div className="shoes">
+                        <img src={suggestion.image} alt="" />
+                        <p>
+                          {splitShoesName(shoesList.model).shoesName}
+                          {splitShoesName(shoesList.model).variation}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

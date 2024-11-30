@@ -13,6 +13,9 @@ interface ShoesList {
   images: string[];
   model: string;
   variation: string;
+  _id: {
+    $oid: string;
+  };
 }
 
 export const ListShoes = () => {
@@ -65,7 +68,7 @@ export const ListShoes = () => {
               variation={shoes.variation}
               img={shoes.images[0] || NoImage}
               key={shoes.code}
-              code={shoes.code}
+              code={shoes._id.$oid}
             />
           ))}
         </div>

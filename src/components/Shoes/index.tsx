@@ -2,9 +2,9 @@ import { Container, ContainerNoLink } from "./styles";
 
 interface ShoesProps {
   img: string;
-  shoesName: string;
+  shoesName?: string;
   big?: boolean;
-  variation: string;
+  variation?: string;
   code?: string;
 }
 
@@ -18,26 +18,30 @@ export const Shoes = ({
   return code ? (
     <Container to={`/listar-tenis/${code}`} big={big}>
       <img src={img} alt="" />
-      <div className="shoe-container">
-        <div className="shoes-name">
-          <p>
-            <strong>{shoesName} </strong>
-            {variation}
-          </p>
+      {shoesName ? (
+        <div className="shoe-container">
+          <div className="shoes-name">
+            <p>
+              <strong>{shoesName} </strong>
+              {variation}
+            </p>
+          </div>
         </div>
-      </div>
+      ) : null}
     </Container>
   ) : (
     <ContainerNoLink big={big}>
       <img src={img} alt="" />
-      <div className="shoe-container">
-        <div className="shoes-name">
-          <p>
-            <strong>{shoesName} </strong>
-            {variation}
-          </p>
+      {shoesName ? (
+        <div className="shoe-container">
+          <div className="shoes-name">
+            <p>
+              <strong>{shoesName} </strong>
+              {variation}
+            </p>
+          </div>
         </div>
-      </div>
+      ) : null}
     </ContainerNoLink>
   );
 };

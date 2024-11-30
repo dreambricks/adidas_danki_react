@@ -25,7 +25,7 @@ export const Container = styled.div`
       width: 100%;
       max-width: 473px;
       height: 473px;
-      object-fit: contain;
+      object-fit: cover;
     }
   }
 `;
