@@ -4,19 +4,25 @@ import { PinterestImgs } from "./PinterestImgs";
 import { Container } from "./styles";
 
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { useCTA } from "../../hook/CTA";
+import { useNavigate } from "react-router";
 
 export const ShoesDetail = () => {
   const [activeSlide, setActiveSlide] = useState(1);
 
-  const { bacToInit } = useCTA();
+  const navigate = useNavigate();
 
   const onSwipeNextSlide = () => setActiveSlide(2);
 
   const onSwipePrevSlide = () => setActiveSlide(1);
 
   useEffect(() => {
-    bacToInit();
+    const clerTimer = setTimeout(() => {
+      navigate("/");
+    }, 45000);
+
+    return () => {
+      clearTimeout(clerTimer);
+    };
   }, []);
 
   return (

@@ -2,16 +2,19 @@ import { Container } from "./styles";
 import AdidasBlack from "../../assets/imgs/icons/adidas_black.png";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
-import { useCTA } from "../../hook/CTA";
 
 export const Welcome = () => {
   const navigate = useNavigate();
   const redirectListt = () => navigate("/listar-tenis");
 
-  const { bacToInit } = useCTA();
-
   useEffect(() => {
-    bacToInit();
+    const clerTimer = setTimeout(() => {
+      navigate("/");
+    }, 45000);
+
+    return () => {
+      clearTimeout(clerTimer);
+    };
   }, []);
 
   return (

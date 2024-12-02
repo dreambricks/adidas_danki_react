@@ -167,7 +167,7 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
               </div>
             )}
 
-            <div className="swipe">
+            {/* <div className="swipe">
               <img src={Pinterest} alt="" />
 
               <div>
@@ -208,7 +208,7 @@ export const MainContent = ({ onSwipe }: MainContentProps) => {
               <div className="pinterest-img">
                 <img src={PinterestImg8} alt="" />
               </div>
-            </div>
+            </div> */}
 
             <div className="separator"></div>
 

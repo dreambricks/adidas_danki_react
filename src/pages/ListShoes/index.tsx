@@ -7,6 +7,7 @@ import { fetchShoes } from "../../services/apis";
 import { Loader } from "../../components/Loader";
 import { useCTA } from "../../hook/CTA";
 import NoImage from "../../assets/imgs/no-img.jpeg";
+import { useNavigate } from "react-router";
 
 interface ShoesList {
   code: string;
@@ -21,7 +22,7 @@ interface ShoesList {
 export const ListShoes = () => {
   const [shoesList, setShoesList] = useState<ShoesList[] | null>(null);
   const [loading, setLoading] = useState(false);
-  const { bacToInit } = useCTA();
+  const navigate = useNavigate();
 
   const getShoes = async () => {
     try {
@@ -51,7 +52,14 @@ export const ListShoes = () => {
 
   useEffect(() => {
     getShoes();
-    bacToInit();
+
+    const clerTimer = setTimeout(() => {
+      navigate("/");
+    }, 45000);
+
+    return () => {
+      clearTimeout(clerTimer);
+    };
   }, []);
 
   return (

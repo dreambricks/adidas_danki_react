@@ -4,9 +4,13 @@ export const useCTA = () => {
   const navigate = useNavigate();
 
   const bacToInit = () => {
-    setTimeout(() => {
+    const clerTimer = setTimeout(() => {
       navigate("/");
-    }, 45000);
+    }, 10000);
+
+    return () => {
+      clearTimeout(clerTimer);
+    };
   };
 
   return {
