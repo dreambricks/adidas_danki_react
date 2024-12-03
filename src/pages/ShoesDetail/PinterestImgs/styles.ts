@@ -65,6 +65,8 @@ export const Container = styled.div`
       img {
         width: 100%;
         width: 487px;
+        height: 865px;
+        object-fit: cover;
       }
     }
   }
