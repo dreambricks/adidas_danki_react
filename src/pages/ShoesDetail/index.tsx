@@ -52,7 +52,6 @@ export const ShoesDetail = () => {
   };
 
   useEffect(() => {
-    if (idParam) getShoesDetails(idParam);
     const clerTimer = setTimeout(() => {
       navigate("/");
     }, 45000);
@@ -61,6 +60,10 @@ export const ShoesDetail = () => {
       clearTimeout(clerTimer);
     };
   }, []);
+
+  useEffect(() => {
+    if (idParam) getShoesDetails(idParam);
+  }, [idParam]);
 
   return (
     <Container>
