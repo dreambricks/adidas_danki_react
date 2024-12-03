@@ -67,6 +67,7 @@ export const Container = styled.div`
         width: 487px;
         height: 865px;
         object-fit: cover;
+        border-radius: 30px;
       }
     }
   }

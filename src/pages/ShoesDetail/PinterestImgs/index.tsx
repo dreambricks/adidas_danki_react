@@ -7,9 +7,14 @@ import { useEffect } from "react";
 interface PinterestImgsProps {
   prevSlide: () => void;
   pinterest: string[];
+  shoeName: string;
 }
 
-export const PinterestImgs = ({ prevSlide, pinterest }: PinterestImgsProps) => {
+export const PinterestImgs = ({
+  prevSlide,
+  pinterest,
+  shoeName,
+}: PinterestImgsProps) => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
@@ -21,7 +26,7 @@ export const PinterestImgs = ({ prevSlide, pinterest }: PinterestImgsProps) => {
           <img src={Pinterest} alt="" />
 
           <p>
-            looks com o <span>samba og w</span>
+            looks com o <span>{shoeName}</span>
           </p>
         </div>
 

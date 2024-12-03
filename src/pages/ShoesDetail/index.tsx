@@ -88,6 +88,7 @@ export const ShoesDetail = () => {
                 <PinterestImgs
                   prevSlide={onSwipePrevSlide}
                   pinterest={shoesList.pinterest}
+                  shoeName={shoesList.model}
                 />
               </div>
             )}
