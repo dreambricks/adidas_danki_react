@@ -51,10 +51,10 @@ export const MainContent = ({ onSwipe, shoesDetails }: MainContentProps) => {
   const reducedPinterestImgs = shoesDetails.pinterest.slice(0, 8);
 
   useEffect(() => {
-    document.querySelector(".swipe")?.addEventListener("click", swipe);
+    document.querySelector(".swipe")?.addEventListener("touchmove", swipe);
 
     return () =>
-      document.querySelector(".swipe")?.removeEventListener("click", swipe);
+      document.querySelector(".swipe")?.removeEventListener("touchmove", swipe);
   }, [idParam]);
 
   return (
