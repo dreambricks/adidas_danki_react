@@ -13,6 +13,16 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
 
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+  }
+
   .start {
     margin-top: 35px;
     background: black;
